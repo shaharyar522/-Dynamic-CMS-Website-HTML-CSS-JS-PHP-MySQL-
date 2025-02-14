@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+      /* General Styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  height: 60px;
+  margin-right: 10px;
+}
+
+.navbar-title {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar-nav {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-nav li {
+  margin-left: 20px;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 5px 10px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ff6347;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+/* Slider Container */
+.slider-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slider-track {
+  display: flex;
+  width: 300%; /* Adjust based on the number of images */
+}
+
+.slider-track img {
+  width: 100%;
+  height: auto;
+  flex-shrink: 0;
+}
+
+/* Slider Arrows */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 24px;
+  transition: background 0.3s ease;
+}
+
+.slider-arrow:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.left-arrow {
+  left: 10px;
+}
+
+.right-arrow {
+  right: 10px;
+}
+
+/* Rest of the CSS remains the same */
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <img src="image/php_logo-removebg-preview.png" alt="Logo" class="navbar-logo">
+            <span class="navbar-title">Webtech Fusion</span>
+        </div>
+        <ul class="navbar-nav">
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#services" class="nav-link">Services</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Container: Image Slider with Arrows -->
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slider-track">
+                <img src="../image/lego-6895159_1280.jpg" alt="Slider Image 1">
+                <img src="../image/lego-6895159_1280.jpg" alt="Slider Image 2">
+                <img src="../image/lego-6895159_1280.jpg" alt="Slider Image 3">
+            </div>
+        </div>
+        <!-- Arrows -->
+        <button class="slider-arrow left-arrow" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="slider-arrow right-arrow" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <!-- Rest of the HTML remains the same -->
+    <!-- Container 2: News Section and Title Image -->
+    <div class="news-container">
+        <!-- Your existing content here -->
+    </div>
+
+    <!-- Container 3: Scrolling Text -->
+    <div class="scrolling-text-container">
+        <!-- Your existing content here -->
+    </div>
+
+    <!-- Container 4: My Team Section -->
+    <div class="team-container">
+        <!-- Your existing content here -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Your existing content here -->
+    </footer>
+
+    <!-- JavaScript for Slider -->
+    <script src="js/slider.js"></script>
+    <script src="js/timer.js"></script>
+
+    <script>
+      // slider.js
+let currentSlide = 0;
+
+function moveSlide(direction) {
+    const slider = document.querySelector('.slider');
+    const slides = document.querySelectorAll('.slider-track img');
+    const totalSlides = slides.length;
+
+    currentSlide += direction;
+    if (currentSlide >= totalSlides) {
+        currentSlide = 0;
+    } else if (currentSlide < 0) {
+        currentSlide = totalSlides - 1;
+    }
+
+    const offset = -currentSlide * 100;
+    slider.style.transform = `translateX(${offset}%)`;
+}
+    </script>
+</body>
+</html>

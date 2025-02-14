@@ -1,0 +1,741 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
+  color: #333;
+
+}
+
+.container {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+/* Sleek Fixed Navbar - 2025 Style */
+.navbar {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 71px;
+  background:#2a4479;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+}
+/* Navbar Brand */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.navbar-logo {
+  height: 74px;
+}
+.navbar-title {
+  color:white;
+  font-size: 28px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+/* Navbar Navigation Links */
+.navbar-nav {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+.navbar-nav li {
+  position: relative;
+}
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 10px 15px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.nav-link:hover {
+  color: #ffcc00;
+  transform: translateY(-2px);
+}
+/* Animated Underline Effect */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: #ffcc00;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    width: 100%;
+    padding-top: 10px;
+  }
+
+  .navbar-nav li {
+    width: 100%;
+  }
+
+  .nav-link {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Image Slider Styles jo kay Navbar main hian */
+
+.slider-container {
+
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
+.slider {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.slider-track {
+  display: flex;
+  width: 600%;
+  /* Adjust width for seamless transition */
+  transition: transform 0.5s ease-in-out;
+}
+
+.slider-track img {
+  width: 100vw;
+  height:79vh;
+  /* Full height for full-page effect */
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Dots for navigation */
+.slider-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.slider-dots .dot {
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.slider-dots .dot.active {
+  background: white;
+}
+/* News Section and Title Image Styles */
+/* Ensure the container covers full width */
+#second {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 20px;
+background-color:  #8AB6F9;
+}
+/* Flexbox Layout for Two Sections */
+.container {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+  /* Adds spacing between sections */
+  width: 100%;
+}
+/* News Section (25% width) */
+.news-section {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  width: 25%;
+  padding: 41px;
+  color: white;
+}
+.news-button {
+  background: #00246B;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+.news-scroll:hover ul {
+  animation-play-state: paused;
+}
+/* Timer Styling */
+#timer {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  /* Dark blue for contrast */
+  margin-bottom: 20px;
+  /* Space below the timer */
+}
+#time {
+  color:white;
+}
+/* Scrolling News Effect */
+.news-scroll {
+  height: 150px;
+  /* Visible height */
+  overflow: hidden;
+  position: relative;
+}
+.news-scroll ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  animation: scroll-up 8s linear infinite;
+}
+.news-scroll ul li {
+  font-size: 16px;
+  padding: 10px;
+  text-align: center;
+}
+.news-scroll ul li a {
+  text-decoration: none;
+  color:#2a4479 ;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+.news-scroll ul li a:hover {
+  color:white;
+}
+/* Scrolling Animation */
+@keyframes scroll-up {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+
+
+
+
+/* Flexbox container for better alignment */
+.title-image {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 200%;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Card Styling */
+.card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 2);
+  padding: 10px;
+  width: 300px;
+  text-align: center;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+  background-color:#2a4479c7;
+  color: white;
+}
+
+/* Image Styling */
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+ 
+  transition: transform 0.3s ease;
+}
+
+/* Title Styling */
+.card h1 {
+  font-size: 20px;
+  margin-top: 10px;
+  font-weight: 600;
+  color:white;
+  transition: color 0.3s ease;
+}
+
+/* Hover Effect */
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover img {
+  transform: scale(1.1);
+}
+
+.card:hover h1 {
+  color: #00246B;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Scrolling Text Container */
+#third {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  background-color:  #8AB6F9;
+ 
+}
+
+.third_container {
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 2);
+  height: 12vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:#2a4479c7;
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+marquee {
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+  white-space: nowrap;
+}
+
+/* this is team work */
+/* Team Container */
+.team-container {
+  height: 81vh;
+  padding: 18px 0;
+  text-align: center;
+  background-color: #8AB6F9;
+ 
+}
+
+/* Title Styling */
+.team-container h1 {
+  font-size: 44px;
+  color: #2c3e50;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 30px;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+}
+
+/* Underline Effect */
+.team-container h1::after {
+  width: 80px;
+  height: 4px;
+  background:#00246B;
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+/* Team Members Grid */
+.team-members {
+  display: flex;
+  justify-content: center;
+  gap: 100px; /* Reduced gap for better spacing */
+  max-width: 1200px;
+  margin: 40px auto 0;
+  padding: 0 20px;
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+
+/* Member Card */
+.member {
+  flex: 1 1 22%;
+  max-width: 400px; /* Adjusted for better proportions */
+  min-width: 220px; /* Ensures cards don't get too small */
+  text-align: center;
+  background: #2a4479c7;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+
+
+/* Hover Effect */
+.member:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+/* Image Frame - FIXED SIZE */
+.member-image {
+  width: 160px; /* Increased size for better visibility */
+  height: 160px; /* Increased size for better visibility */
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 6px solid #667eea;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+/* Image Styling */
+.member-image img {
+  width: 100%; /* Ensures image fills the container */
+  height: 100%; /* Ensures image fills the container */
+  object-fit: cover; /* Maintains aspect ratio */
+  transition: none; /* No animation */
+}
+/* Member Name & Role */
+.member h3 {
+  margin: 10px 0 5px;
+  font-size: 22px;
+  color: white;
+  font-weight: bold;
+}
+.member h3 {
+  margin: 10px 0 5px;
+  font-size: 22px;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+.member h3:hover {
+  color: #00246B;
+}
+.member h3:active {
+  color: #00246B;
+}
+.member p {
+  font-size: 16px;
+  color: white;
+  font-weight: 500;
+}
+/* Social Icons (Optional) */
+.member-social {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.member-social a {
+  color: white;
+  font-size: 20px;
+  transition: color 0.3s ease;
+}
+.member-social a:hover {
+  color: #667eea;
+}
+
+
+/* this is the form css when user clic the below button after member  */
+.contact-form {
+  text-align: center;
+  padding: 56px;
+  background-color: #8AB6F9;
+}
+
+h1 {
+  font-size: 28px;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.btn {
+  background-color: #00246B;
+  color: white;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 2);
+}
+
+.btn:hover {
+  background-color: #2a4479c7;
+  transform: scale(1.05);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease;
+}
+
+.modal-content {
+  background:  #8AB6F9;
+  padding: 30px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 450px;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 2px solid #007bff;
+  border-radius: 17px;
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s;
+  color: white;
+  background: #001f5ccc;
+}
+
+.form-input:focus {
+  border-color: #0056b3;
+  box-shadow: 0 0 10px rgba(0, 91, 187, 0.5);
+}
+
+.textarea {
+  height: 100px;
+  resize: none;
+}
+
+.submit-btn {
+  background-color:#00246B;
+  color: white;
+  padding: 11px 28px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn:hover {
+  background-color: #2a4479c7;
+  transform: scale(1.05);
+}
+
+.close-btn {
+  margin-top: 10px;
+  background-color: #dc3545;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.close-btn:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
+}
+
+.modal.show {
+  display: flex;
+  opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Footer Styles */
+footer {
+  
+  height: 51vh;
+  background-color:#2a4479;
+  color: white;
+  padding: 40px 80px;
+}
+
+.footer-container {
+  margin-top: 61px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  flex: 1;
+  margin: 10px;
+}
+
+.footer-section h3 {
+  font-size: 23px;
+  margin-bottom: 15px;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section ul li {
+  margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+  text-decoration: none;
+  color: #bbb;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+  color: #ffffff;
+}
+
+/* Social Icons with Text */
+/* Social Icons - Horizontal Layout with Circular Images */
+.social-icons {
+  text-align: center;
+}
+
+.social-icons .icons {
+  
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.icon-circle {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 2);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #00246B; /* Background color for icons */
+}
+
+.icon-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image covers the circle */
+  border-radius: 50%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.icon-circle:hover img {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
