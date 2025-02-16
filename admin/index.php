@@ -36,13 +36,12 @@
 
 
 
-        
+
 
         <!-- Main Content -->
-        <div class="main-content" >
-        
+        <div class="main-content">
             <div class="dashboard">
-            <h1 class="dashboard-header"> Interactive CMS Dashboard</h1>
+                <h1 class="dashboard-header"> Interactive CMS Dashboard</h1>
                 <!-- Top Section: Buttons -->
                 <div class="top-section">
                     <button id="sliderBtn" class="btn">Slider</button>
@@ -76,18 +75,16 @@
                     <!-- Form will dynamically appear here -->
                 </div>
             </div>
-        
-         
-        </div>
-
-        
-
-
 
 
         </div>
-        
-     
+
+
+
+
+
+
+    </div>
 
 
 
@@ -96,10 +93,12 @@
 
 
 
-            
-        </div>
-            
-       
+
+
+
+    </div>
+
+
 
 
 
