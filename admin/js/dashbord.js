@@ -1,19 +1,17 @@
-// DOM Elements
+
 const sliderBtn = document.getElementById('sliderBtn');
 const newsBtn = document.getElementById('newsBtn');
 const marqueeBtn = document.getElementById('marqueeBtn');
 const formSection = document.getElementById('formSection');
 
-// Event Listeners for Buttons
+
 sliderBtn.addEventListener('click', () => showForm('slider'));
 newsBtn.addEventListener('click', () => showForm('news'));
 marqueeBtn.addEventListener('click', () => showForm('marquee'));
 
-// Function to Display the Appropriate Form
 function showForm(type) {
   let formHTML = '';
 
-  // Generate form HTML based on the button clicked
   switch (type) {
     case 'slider':
       formHTML = `
@@ -32,7 +30,8 @@ function showForm(type) {
         <div class="form-container active">
           <h3>Add News</h3>
           <input type="text" id="newsTitle" placeholder="Enter news title">
-          <textarea id="newsDescription" placeholder="Enter news description"></textarea>
+        <textarea id="newsDescription" placeholder="Enter news description"></textarea>
+
           <button onclick="saveContent('news')">Submit</button>
         </div>
       `;

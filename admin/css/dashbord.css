@@ -159,6 +159,7 @@ body {
 .slider-display,
 .news-display,
 .marquee-display {
+  margin-top: 18px;
   height: 150px;
   display: flex;
   align-items: center;
@@ -169,12 +170,6 @@ body {
 }
 
 /* Bottom Section: Interactive Form */
-.bottom-section {
-  background-color: #2a4479c7;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 2);
-}
 
 .form-container {
   display: none;
@@ -187,6 +182,8 @@ body {
 
 .form-container input,
 .form-container textarea {
+  background-color: #2a4479;
+  margin-top: 12px;
   width: 93%;
   padding: 10px;
   margin-bottom: 10px;
@@ -219,4 +216,20 @@ body {
   /* Ensures it moves below floating elements */
   display: block;
   /* Prevents flexbox alignment issues */
+}
+
+/* uay harmara pass jb clik kartain  hian kay andar card open hntahian us text ki css jo ky whtie hngi */
+#sliderTitle::placeholder {
+  color: white;
+}
+
+#newsTitle::placeholder{
+  color: white;
+}
+#newsDescription::placeholder {
+  color: white;
+}
+
+#marqueeText::placeholder {
+  color: white;
 }
