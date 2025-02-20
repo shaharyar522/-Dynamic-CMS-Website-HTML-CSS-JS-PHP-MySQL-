@@ -1,3 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive </title>
+    <link rel="stylesheet" href="css/dashbord.css">
+</head>
+
+<body>
+    <!-- flow
+     one div hain
+     us ka andar 2 div hian 
+     1.left sidebar dashboard hian
+     2.main dash board hian  -->
+    <?php require_once("./incs/side_dashboard.php") ?>
 
 
-<h1 class="dashboard-header"> Interactive CMS Dashboard</h1>
+
+
+
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="dashboard">
+            <h1 class="dashboard-header"> Interactive CMS Dashboard</h1>
+            <!-- Top Section: Buttons -->
+            <div class="top-section">
+                <button id="sliderBtn" class="btn">Slider</button>
+                <button id="newsBtn" class="btn">News</button>
+                <button id="marqueeBtn" class="btn">Marquee</button>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- Bottom Section: Interactive Form -->
+            <div id="formSection" class="bottom-section">
+                <!-- Slider Form -->
+                <div class="form-container" id="sliderForm" style="display:none;">
+                    <h3>Add Slider Image</h3>
+                    <form action="backend/slider.php" method="POST" enctype="multipart/form-data">
+                        <input type="text" name="sliderTitle" id="sliderTitle" placeholder="Enter title" required>
+                        <input type="file" name="sliderImage" id="sliderImage" accept="image/*" required>
+                        <button type="button" onclick="previewSliderImage()">Preview Image</button>
+                        <button type="submit" onclick="saveSliderContent()">Submit</button>
+                    </form>
+                </div>
+
+                <!-- News Form -->
+                <div class="form-container" id="newsForm" style="display:none;">
+                    <h3>Add News</h3>
+                    <form action="backend/news.php" method="POST">
+                        <input type="text" name="newsTitle" id="newsTitle" placeholder="Enter news title" required>
+                        <textarea name="newsDescription" id="newsDescription" placeholder="Enter news description" required></textarea>
+                        <button type="submit" onclick="saveNewsContent()">Submit</button>
+                    </form>
+                </div>
+
+                <!-- Marquee Form -->
+                <div class="form-container" id="marqueeForm" style="display:none;">
+                    <h3>Add Marquee Text</h3>
+                    <form action="backend/marquee.php" method="POST">
+                        <input type="text" name="marqueeText" id="marqueeText" placeholder="Enter scrolling text" required>
+                        <button type="submit" onclick="saveMarqueeContent()">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+
+    </div>
+    </div>
+    </div>
+    <script src="js/dashbord.js"></script>
+</body>
+
+</html>

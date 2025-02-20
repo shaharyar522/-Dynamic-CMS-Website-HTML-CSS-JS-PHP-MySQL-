@@ -1,19 +1,5 @@
-<?php
-// Database Connection
-$servername = "localhost";
-$username = "root"; // Default username for XAMPP
-$password = ""; // Default password for XAMPP
-$dbname = "project_two"; // Make sure this matches your actual database name
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check Connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-// Fetch Slider Images from Database
 
 
-// Fetch News from Database
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,6 +11,7 @@ if ($conn->connect_error) {
 </head>
 
 <body>
+
 
     <!-- uay hamray pass Navbar hian-->
     <nav class="navbar">
@@ -45,22 +32,19 @@ if ($conn->connect_error) {
     <div class="slider-container">
         <div class="slider">
             <div class="slider-track">
-                <?php
-                $dir = "../admin/incs/";
-                $sliderQuery = "SELECT slider_image FROM slider";
-                $result = mysqli_query($conn, $sliderQuery);
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        $imageSrc = $dir . htmlspecialchars($row['slider_image']);
-                        echo "<img src='$imageSrc' alt='Slider Image'>";
-                    }
-                } else {
-                    echo "<p>No images available</p>";
-                }
-                ?>
+                <img src="image/sliderimage/one.jpg" alt="Slider Image 1">
+                <img src="image/sliderimage/two .jpg" alt="Slider Image 2">
+                <img src="image/sliderimage/thre.jpg" alt="Slider Image 3">
+                <!-- Duplicate images for seamless scrolling -->
+                <img src="image/sliderimage/one.jpg" alt="Slider Image 1">
+                <img src="image/sliderimage/two .jpg" alt="Slider Image 2">
+                <img src="image/sliderimage/thre.jpg" alt="Slider Image 3">
             </div>
         </div>
     </div>
+
+
+
     <!-- uay hamray pass second contianer start hngyahian -->
     <!-- news wala section -->
     <script src="js/timer.js"></script>
@@ -74,17 +58,11 @@ if ($conn->connect_error) {
                 </div>
                 <div class="news-scroll">
                     <ul>
-                        <?php
-                        $newsQuery = "SELECT news_title FROM news";
-                        $newsResult = mysqli_query($conn, $newsQuery);
-                        if ($newsResult->num_rows > 0) {
-                            while ($news = $newsResult->fetch_assoc()) {
-                                echo '<li><strong>' . $news['news_title'] . ':</strong></li>';
-                            }
-                        } else {
-                            echo "<p>No news avaiable </p";
-                        }
-                        ?>
+                        <li><a href="https://www.dawn.com/news/1891044/jcp-names-6-high-court-judges-for-supreme-court-as-pti-boycotts-meeting" target="_blank">JCP names 6 high court judges for Supreme Court as PTI boycotts meeting</a></li>
+                        <li><a href="https://www.dawn.com/news/1890900" target="_blank">Situationer: Ali Amin Gandapur’s foibles on the political tightrope</a></li>
+                        <li><a href="https://www.geo.tv/latest/589945-another-vessel-carrying-pakistanis-other-migrants-sinks-off-libya-coast" target="_blank">Another vessel carrying Pakistanis, other migrants sinks off Libya coast</a></li>
+                        <li><a href="https://www.geo.tv/latest/589918-turkiye-president-tayyip-erdogan-to-visit-pakistan-this-week" target="_blank">Turkiye President Tayyip Erdogan to visit Pakistan this week</a></li>
+                        <li><a href="https://www.geo.tv/latest/589901-jcp-to-meet-today-for-appointment-of-eight-supreme-court-judges" target="_blank">PTI, two justices 'boycott' JCP moot called to appoint judges</a></li>
                     </ul>
                 </div>
             </div>
@@ -112,23 +90,12 @@ if ($conn->connect_error) {
 
 
 
-
+    
     <!-- Container 3: Scrolling Text -->
     <div id="third">
         <div class="third_container">
             <marquee behavior="scroll" direction="left">
-                <?php
-                // Fetch Marquee Text from Database
-                $marqueeQuery = "SELECT marquee_text from marquee";
-                $marqueeResult = mysqli_query($conn, $marqueeQuery);
-                if ($marqueeResult->num_rows > 0) {
-                    while ($marquee = $marqueeResult->fetch_assoc()) {
-                        echo htmlspecialchars($marquee['marquee_text']) . " | ";
-                    }
-                } else {
-                    echo " No marquee text available.";
-                }
-                ?>
+                🚀 Web Development is the art of crafting digital experiences! | 🌐 From HTML & CSS to JavaScript & AI-powered websites, the web is evolving fast! | 📱 Responsive, Secure, & Lightning Fast Websites are the future! | 💡 Innovation + Code = The Digital Revolution! | 🔥 Build, Deploy, and Scale with Modern Web Technologies! | 🎯 Your website is your brand's first impression—Make it unforgettable!
             </marquee>
         </div>
     </div>
@@ -191,7 +158,7 @@ if ($conn->connect_error) {
     <div>
 
 
-
+    
         <!-- uay hamraypass footer hian  -->
         <footer>
             <div class="footer-container">

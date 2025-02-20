@@ -1,55 +1,31 @@
-
 const sliderBtn = document.getElementById('sliderBtn');
 const newsBtn = document.getElementById('newsBtn');
 const marqueeBtn = document.getElementById('marqueeBtn');
 const formSection = document.getElementById('formSection');
 
-
+// Event listeners to show the corresponding forms
 sliderBtn.addEventListener('click', () => showForm('slider'));
 newsBtn.addEventListener('click', () => showForm('news'));
 marqueeBtn.addEventListener('click', () => showForm('marquee'));
 
 function showForm(type) {
-  let formHTML = '';
+  // Hide all forms first
+  document.getElementById('sliderForm').style.display = 'none';
+  document.getElementById('newsForm').style.display = 'none';
+  document.getElementById('marqueeForm').style.display = 'none';
 
+  // Show the relevant form
   switch (type) {
     case 'slider':
-      formHTML = `
-        <div class="form-container active">
-          <h3>Add Slider Image</h3>
-          <input type="text" id="sliderTitle" placeholder="Enter title">
-          <input type="file" id="sliderImage" accept="image/*">
-          <button onclick="previewImage()">Preview Image</button>
-          <button onclick="saveContent('slider')">Submit</button>
-        </div>
-      `;
+      document.getElementById('sliderForm').style.display = 'block';
       break;
-
     case 'news':
-      formHTML = `
-        <div class="form-container active">
-          <h3>Add News</h3>
-          <input type="text" id="newsTitle" placeholder="Enter news title">
-        <textarea id="newsDescription" placeholder="Enter news description"></textarea>
-
-          <button onclick="saveContent('news')">Submit</button>
-        </div>
-      `;
+      document.getElementById('newsForm').style.display = 'block';
       break;
-
     case 'marquee':
-      formHTML = `
-        <div class="form-container active">
-          <h3>Add Marquee Text</h3>
-          <input type="text" id="marqueeText" placeholder="Enter scrolling text">
-          <button onclick="saveContent('marquee')">Submit</button>
-        </div>
-      `;
+      document.getElementById('marqueeForm').style.display = 'block';
       break;
   }
-
-  // Insert the form HTML into the form section
-  formSection.innerHTML = formHTML;
 }
 
 // Function to Save Content Based on Type

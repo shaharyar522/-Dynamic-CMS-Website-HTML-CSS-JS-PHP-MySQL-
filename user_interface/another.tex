@@ -1,19 +1,7 @@
 <?php
-// Database Connection
-$servername = "localhost";
-$username = "root"; // Default username for XAMPP
-$password = ""; // Default password for XAMPP
-$dbname = "project_two"; // Make sure this matches your actual database name
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check Connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-// Fetch Slider Images from Database
-
-
-// Fetch News from Database
+include('admin/incs/connection.php');
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,6 +13,7 @@ if ($conn->connect_error) {
 </head>
 
 <body>
+
 
     <!-- uay hamray pass Navbar hian-->
     <nav class="navbar">
@@ -43,95 +32,71 @@ if ($conn->connect_error) {
     <script src="./js/slider.js"></script>
     <!-- Container 1: Image Slider -->
     <div class="slider-container">
-        <div class="slider">
+    <div class="slider">
             <div class="slider-track">
                 <?php
-                $dir = "../admin/incs/";
-                $sliderQuery = "SELECT slider_image FROM slider";
-                $result = mysqli_query($conn, $sliderQuery);
+                $sliderQuery = "SELECT image_path FROM slider";
+                $result = $conn->query($sliderQuery);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        $imageSrc = $dir . htmlspecialchars($row['slider_image']);
-                        echo "<img src='$imageSrc' alt='Slider Image'>";
+                        echo '<img src="image/sliderimage/' . $row['image_path'] . '" alt="Slider Image">';
                     }
-                } else {
-                    echo "<p>No images available</p>";
                 }
                 ?>
             </div>
         </div>
+      
     </div>
+
+
+
     <!-- uay hamray pass second contianer start hngyahian -->
     <!-- news wala section -->
     <script src="js/timer.js"></script>
     <div id="second">
-        <div class="container">
+    <div class="container">
             <div class="news-section">
                 <button class="news-button">Latest News Click And Read The News</button>
-                </section>
-                <div id="timer">
-                    <span id="time"></span>
-                </div>
                 <div class="news-scroll">
                     <ul>
                         <?php
-                        $newsQuery = "SELECT news_title FROM news";
-                        $newsResult = mysqli_query($conn, $newsQuery);
+                        $newsQuery = "SELECT title, link FROM news ORDER BY id DESC LIMIT 5";
+                        $newsResult = $conn->query($newsQuery);
                         if ($newsResult->num_rows > 0) {
                             while ($news = $newsResult->fetch_assoc()) {
-                                echo '<li><strong>' . $news['news_title'] . ':</strong></li>';
+                                echo '<li><a href="' . $news['link'] . '" target="_blank">' . $news['title'] . '</a></li>';
                             }
-                        } else {
-                            echo "<p>No news avaiable </p";
                         }
                         ?>
                     </ul>
                 </div>
             </div>
-            <!-- Title Image Section -->
-            <div class="title-image">
-                <div class="card">
-                    <img src="image/cardimage/image card 1.webp" alt="Tech Image">
-                    <h1>Modern Technology</h1>
-                    <p>Modern technology enhances life through AI, IoT, blockchain, and 5G, driving automation, connectivity, efficiency, and sustainability across industries worldwide.</p>
-                </div>
-                <div class="card">
-                    <img src="image/cardimage/cardone.jpg" alt="Tech Image">
-                    <h1>Business Growth</h1>
-                    <p>Modern technology enhances life through AI, IoT, blockchain, and 5G, driving automation, connectivity, efficiency, and sustainability across industries worldwide.</p>
-                </div>
-                <div class="card">
-                    <img src="image/cardimage/card thre.jpg" alt="Tech Image">
-                    <h1>Luxury Car</h1>
-                    <p>Modern technology enhances life through AI, IoT, blockchain, and 5G, driving automation, connectivity, efficiency, and sustainability across industries worldwide.</p>
-                </div>
-            </div>
         </div>
+    </div>
     </div>
 
 
 
 
-
+    
     <!-- Container 3: Scrolling Text -->
     <div id="third">
-        <div class="third_container">
+    <div class="third_container">
             <marquee behavior="scroll" direction="left">
                 <?php
-                // Fetch Marquee Text from Database
-                $marqueeQuery = "SELECT marquee_text from marquee";
-                $marqueeResult = mysqli_query($conn, $marqueeQuery);
+                $marqueeQuery = "SELECT text FROM marquee ORDER BY id DESC LIMIT 1";
+                $marqueeResult = $conn->query($marqueeQuery);
                 if ($marqueeResult->num_rows > 0) {
-                    while ($marquee = $marqueeResult->fetch_assoc()) {
-                        echo htmlspecialchars($marquee['marquee_text']) . " | ";
-                    }
+                    $marquee = $marqueeResult->fetch_assoc();
+                    echo $marquee['text'];
                 } else {
-                    echo " No marquee text available.";
+                    echo "Welcome to our dynamic website!";
                 }
                 ?>
             </marquee>
         </div>
     </div>
+    <?php $conn->close(); ?>
 
     <!-- Container 4: jis main hamray pass My team  hian
      or us main hamray pass team hian jis 3 pictures hian -->
@@ -191,7 +156,7 @@ if ($conn->connect_error) {
     <div>
 
 
-
+    
         <!-- uay hamraypass footer hian  -->
         <footer>
             <div class="footer-container">

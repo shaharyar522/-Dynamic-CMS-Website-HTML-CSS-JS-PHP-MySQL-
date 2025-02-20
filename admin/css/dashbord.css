@@ -22,7 +22,7 @@ body {
   text-transform: uppercase;
 
   padding: 15px;
-  background-color: #8AB6F9;
+  
   /* Professional dark blue */
 
 }
@@ -232,4 +232,37 @@ body {
 
 #marqueeText::placeholder {
   color: white;
+}
+
+
+/* uay hamraypass logout ki css hian */
+.dashboard-topbar {
+  margin-top:-20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 15px 20px;
+  color: white;
+}
+
+.dashboard-header {
+  width: 100%;
+  font-size: 45px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.logout-btn {
+  background-color: #e74c3c;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #c0392b;
 }
