@@ -1,7 +1,7 @@
 .action-button {
     display: block;
     margin: 5px 0;
-    padding: 8px;
+    padding: 12px;
     background-color: #007bff;
     color: white;
     border: none;
@@ -9,8 +9,17 @@
     border-radius: 5px;
     width: 100%;
     text-align: left;
+    transition: background-color 0.3s ease;
 }
 
 .action-button:hover {
     background-color: #0056b3;
+}
+
+/* Sidebar height fix */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: auto;
 }

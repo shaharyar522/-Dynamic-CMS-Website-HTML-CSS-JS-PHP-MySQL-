@@ -13,6 +13,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
     <title>Interactive CMS Dashboard</title>
     <link rel="stylesheet" href="css/dashbord.css">
 </head>
+
 <body>
     <?php require_once("./incs/side_dashboard.php") ?>
 
@@ -22,47 +23,72 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                 <h1 class="dashboard-header">Interactive CMS Dashboard</h1>
                 <a href="../logout.php" class="logout-btn">Logout</a>
             </div>
-            <!-- Buttons to show Forms -->
-            <div class="top-section">
-                <button id="sliderBtn" class="btn">Slider</button>
-                <button id="newsBtn" class="btn">News</button>
-                <button id="marqueeBtn" class="btn">Marquee</button>
+            <div id="homeSection" style="display: none;">
+                <?php include("incs/home.php"); ?>
             </div>
-            <!-- Forms Section -->
-            <div id="formSection" class="bottom-section">
-                <div class="form-container" id="sliderForm" style="display:none;">
-                    <h3>Add Slider Image</h3>
-                    <form action="./incs/slider_backend.php" method="POST" enctype="multipart/form-data">
-                        <input type="text" name="sliderTitle" placeholder="Enter title" required>
-                        <input type="file" name="sliderImage" accept="image/*" required>
-                        <button type="submit" name="submit" value="sub">Submit</button>
-                    </form>
-                </div>
-                <div class="form-container" id="newsForm" style="display:none;">
-                    <h3>Add News</h3>
-                    <form action="./incs/news_backend.php" method="POST">
-                        <input type="text" name="newsTitle" placeholder="Enter news title" required>
-                        <textarea name="newsDescription" placeholder="Enter news description" required></textarea>
-                        <button type="submit" name="submit" value="sub">Submit</button>
-                    </form>
-                </div>
-                <div class="form-container" id="marqueeForm" style="display:none;">
-                    <h3>Add Marquee Text</h3>
-                    <form action="./incs/marquee_backend.php" method="POST">
-                        <input type="text" name="marqueeText" placeholder="Enter scrolling text" required>
-                        <button type="submit" name="submit" value="sub">Submit</button>
-                    </form>
-                </div>
-                <div class="form-container" id="marqueeForm" style="display:none;">
-                    <h3>Add Marquee Text</h3>
-                    <form action="./incs/marquee_backend.php" method="POST">
-                        <input type="text" name="marqueeText" placeholder="Enter scrolling text" required>
-                        <button type="submit" name="submit" value="sub">Submit</button>
-                    </form>
-                </div>
+
+            <!-- Slider List Page (Initially Hidden) -->
+            <div id="sliderPage" style="display: none;">
+                <?php require_once("incs/slider_list.php"); ?>
             </div>
+
+            <!-- News List Page (Initially Hidden) -->
+        <div id="newsPage" style="display: none;">
+            <?php require_once("incs/news_list.php"); ?>
+        </div>
+
+        <!-- Marquee List Page (Initially Hidden) -->
+        <div id="marqueePage" style="display: none;">
+            <?php require_once("incs/marquee_list.php"); ?>
+        </div>
+
+
+
+
+
         </div>
     </div>
     <script src="js/dashbord.js"></script>
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+    let homeSection = document.getElementById("homeSection");
+    let sliderPage = document.getElementById("sliderPage");
+    let newsPage = document.getElementById("newsPage");
+    let marqueePage = document.getElementById("marqueePage");
+
+    function showOnly(section) {
+      
+        homeSection.style.display = "none";
+        sliderPage.style.display = "none";
+        newsPage.style.display = "none";
+        marqueePage.style.display = "none";
+
+        // صرف منتخب شدہ سیکشن کو دکھائیں
+        section.style.display = "block";
+    }
+
+    document.getElementById("homeLink").addEventListener("click", function(event) {
+        event.preventDefault();
+        showOnly(homeSection);
+    });
+
+    document.getElementById("sliderLink").addEventListener("click", function(event) {
+        event.preventDefault();
+        showOnly(sliderPage);
+    });
+
+    document.getElementById("newsLink").addEventListener("click", function(event) {
+        event.preventDefault();
+        showOnly(newsPage);
+    });
+
+    document.getElementById("marqueeLink").addEventListener("click", function(event) {
+        event.preventDefault();
+        showOnly(marqueePage);
+    });
+});
+
+    </script>
 </body>
+
 </html>

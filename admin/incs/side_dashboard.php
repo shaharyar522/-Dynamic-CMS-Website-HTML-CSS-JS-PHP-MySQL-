@@ -15,10 +15,9 @@
 
           <!-- Sidebar navigation hian hamray pass es  main  -->
           <ul>
-              <li><a href="#">Home</a></li>
-              <li onclick="showTable('slider-table')">Slider List</li>
-              <li onclick="showTable('news-table')">News List</li>
-              <li onclick="showTable('marquee-table')">Marquee List</li>
+              <li><a href="#" id="homeLink">Home</a></li>
+              <li><a href="#" id="sliderLink">Slider List</a></li>
+              <li><a href="#" id="newsLink">News List</a></li>
+              <li><a href="#" id="marqueeLink">Marquee List</a></li>
           </ul>
       </div>
-      
