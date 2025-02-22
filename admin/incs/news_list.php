@@ -40,7 +40,6 @@ $news_items = mysqli_fetch_all($result, MYSQLI_ASSOC);
                     <td class="text-center">
                         <a href="news_edit.php?news_id=<?php echo $news['news_id']; ?>" class="btn btn-success">Edit</a>
                         <a href="?news_delete=<?php echo $news['news_id']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this news?');">Delete</a>
-
                     </td>
                 </tr>
                 <?php endforeach; ?>
