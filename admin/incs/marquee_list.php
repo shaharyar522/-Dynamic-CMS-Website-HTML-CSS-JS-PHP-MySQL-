@@ -5,9 +5,17 @@ require_once('connection.php'); // Database Connection
 if(isset($_GET['marquee_delete'])) {
     $delete_marquee = $_GET['marquee_delete'];
     $query = "DELETE FROM marquee WHERE marquee_id='$delete_marquee'";
-    mysqli_query($conn, $query);
-    header("Location:marquee_list.php"); 
-    exit();
+    $result =   mysqli_query($conn, $query);
+   
+    if($result){
+        echo "<script>
+        window.location.href = 'index.php?show=marquee';
+    </script>";
+        exit();
+    }else
+    {
+        echo "error";
+    }
 }
 
 // Fetch Marquee Data

@@ -1,101 +1,142 @@
-<?php 
-require_once('connection.php'); // Database Connection
+<?php require_once("connection.php") ?>
+<!DOCTYPE html>
+<html lang="en">
 
-// Delete Slider
-if(isset($_GET['slider_delete'])) {
-    $delete_slider = $_GET['slider_delete'];
-    $query = "DELETE FROM slider WHERE slider_id='$delete_slider'";
-    mysqli_query($conn, $query);
-    header("Location: slider_list.php"); 
-    exit();
-}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css botstarp -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- js bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- data table css -->
+    <link rel="stylesheet" href="//cdn.datatables.net/2.2.2/css/dataTables.dataTables.min.css">
+    <!-- jquey -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- uay form ki css hian -->
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
 
-// Fetch Slider Data
-$query = "SELECT * FROM slider";
-$result = mysqli_query($conn, $query);
-$sliders = mysqli_fetch_all($result, MYSQLI_ASSOC);
-?>
+        form input[type="text"],
+        form input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
 
-<style>
-    /* Basic Styling */
-    .container {
-        width: 90%;
-        margin: 20px auto;
-        font-family: Arial, sans-serif;
-    }
-    
-    h1 {
-        text-align: center;
-        font-size: 24px;
-        color: #333;
-        margin-bottom: 20px;
-    }
+        form input[type="text"]:focus,
+        form input[type="file"]:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 10px;
-    }
+        form button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+        }
 
-    th, td {
-        border: 1px solid #ddd;
-        padding: 10px;
-        text-align: left;
-    }
+        form button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
 
-    th {
-        background-color: #f4f4f4;
-        font-weight: bold;
-    }
+<body>
+    <!-- modal start when click the edit button the data will updated -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edits Slider List</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        <input type="text" name="sliderTitleEdit" id="sliderTitleEdit" placeholder="Enter title" required>
+                        <input type="file" name="sliderImageEdit" id="sliderImageEdit" accept="image/*" required>
+                        <button type="submit" name="submit" value="sub">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Update Slider List</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End modal  -->
 
-    img {
-        max-width: 100px;
-        height: auto;
-    }
 
-    .action-links a {
-        text-decoration: none;
-        color: white;
-        padding: 5px 10px;
-        margin: 2px;
-        display: inline-block;
-        border-radius: 3px;
-    }
+    <!-- start table container  -->
+    <div class="container my-4">
+        <h1 class="text-center fw-bold" style="color: white;">Slider List</h1>
+        <table class="table" id="myTable">
+            <thead>
+                <tr>
+                    <th>Sno</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
 
-    .edit-btn {
-        background-color: #28a745;
-    }
+            <tbody>
+                <?php
+                $query = "SELECT * FROM slider";
+                $result = mysqli_query($conn, $query);
+                $sno = 0;
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $sno = $sno + 1;
+                    echo "<tr>
+                         <th>" . $sno . "</th>
+                          <td>" . $row['slider_title'] . "</td>
+                          <td>" . $row['slider_image'] . "</td>
+                          <td><button class='edit btn btn-sm btn-primary'>Edit</button><a href='/delete'>Delete</a></td>
+                         </tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+    <!-- End  table container -->
 
-    .delete-btn {
-        background-color: #dc3545;
-    }
+    <script src="//cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
+    <script>
+        let table = new DataTable('#myTable');
+    </script>
 
-    .action-links a:hover {
-        opacity: 0.8;
-    }
-</style>
 
-<div class="container">
-    <h1>Slider List</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Slider Title</th>
-                <th>Slider Image</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($sliders as $slider): ?>
-            <tr>
-                <td><?php echo htmlspecialchars($slider['slider_title']); ?></td>
-                <td><img src="<?php echo htmlspecialchars($slider['slider_path']); ?>" alt="Slider Image"></td>
-                <td class="action-links">
-                    <a href="slider_edit.php?slider_id=<?php echo $slider['slider_id']; ?>" class="edit-btn">Edit</a>
-                    <a href="?slider_delete=<?php echo $slider['slider_id']; ?>" class="delete-btn" onclick="return confirm('Are you sure you want to delete this slider?');">Delete</a>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-</div>
+
+    <script>
+      edits = document.getElementsByClassName('edit');
+      Array.from(edits).forEach((element)=>{
+        element.addEventListener("click", (e)=>{
+            console.log("edit", );
+            //ab parent ka parent main chala gya hn ab tr mill gya hian ab dono td ko laain lo ga
+            tr = e.target.parentNode.parentNode;
+            slider_title = tr.getElementsByTagName("td")[0].innerText;
+            slider_image = tr.getElementsByTagName("td")[1].innerText;
+             console.log(slider_title, slider_image);
+             //ab main ny form main id or name dia hian or class di hian us ko us ko innerText kia  hian
+             sliderTitleEdit = slider_title;
+             sliderImageEdit = slider_image;
+             $('#editModal').modal('toggle');
+        });
+      });
+    </script>
+</body>
+
+</html>

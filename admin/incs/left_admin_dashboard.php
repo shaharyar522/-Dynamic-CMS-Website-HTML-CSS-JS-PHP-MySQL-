@@ -15,9 +15,9 @@
 
           <!-- Sidebar navigation hian hamray pass es  main  -->
           <ul>
-              <li><a href="#" id="homeLink">Home</a></li>
-              <li><a href="#" id="sliderLink">Slider List</a></li>
-              <li><a href="#" id="newsLink">News List</a></li>
-              <li><a href="#" id="marqueeLink">Marquee List</a></li>
+              <li><a href="#" id="dashboardLink">Dashboard</a></li>
+              <li><a href="#" id="sliderListLink">Slider List</a></li>
+              <li><a href="#">News List</a></li>
+              <li><a href="#">Marquee List</a></li>
           </ul>
       </div>

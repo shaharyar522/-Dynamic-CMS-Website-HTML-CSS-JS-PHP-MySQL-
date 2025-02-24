@@ -7,88 +7,52 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive CMS Dashboard</title>
     <link rel="stylesheet" href="css/dashbord.css">
+    <!-- css botstarp -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- js bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
-    <?php require_once("./incs/side_dashboard.php") ?>
-
+    <?php include("./incs/left_admin_dashboard.php") ?>
     <div class="main-content">
         <div class="dashboard">
             <div class="dashboard-topbar">
                 <h1 class="dashboard-header">Interactive CMS Dashboard</h1>
                 <a href="../logout.php" class="logout-btn">Logout</a>
             </div>
-            <div id="homeSection" style="display: none;">
-                <?php include("incs/home.php"); ?>
+            <!-- Only Dashboard Section -->
+            <div id="dashboardSection" style="display: none;">
+                <?php include("incs/dashboard.php"); ?>
             </div>
-
-            <!-- Slider List Page (Initially Hidden) -->
-            <div id="sliderPage" style="display: none;">
-                <?php require_once("incs/slider_list.php"); ?>
+            <!-- Slider List Section (Initially Hidden) -->
+            <div id="sliderListSection" style="display: none;">
+                <?php include("incs/slider_list.php"); ?>
             </div>
-
-            <!-- News List Page (Initially Hidden) -->
-        <div id="newsPage" style="display: none;">
-            <?php require_once("incs/news_list.php"); ?>
-        </div>
-
-        <!-- Marquee List Page (Initially Hidden) -->
-        <div id="marqueePage" style="display: none;">
-            <?php require_once("incs/marquee_list.php"); ?>
-        </div>
-
-
 
 
 
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+    <!-- //es main wo hidern hain  jab hum side par click kartain hian to haumay wo file show hntin hian -->
+    <script src="js/hidden_sidebar.js"></script>
+    <!-- uay siraf only dashbord ki js hian jb hum click karay guty tab uay form show hnguy -->
     <script src="js/dashbord.js"></script>
-    <script>
-document.addEventListener("DOMContentLoaded", function() {
-    let homeSection = document.getElementById("homeSection");
-    let sliderPage = document.getElementById("sliderPage");
-    let newsPage = document.getElementById("newsPage");
-    let marqueePage = document.getElementById("marqueePage");
-
-    function showOnly(section) {
-      
-        homeSection.style.display = "none";
-        sliderPage.style.display = "none";
-        newsPage.style.display = "none";
-        marqueePage.style.display = "none";
-
-        // صرف منتخب شدہ سیکشن کو دکھائیں
-        section.style.display = "block";
-    }
-
-    document.getElementById("homeLink").addEventListener("click", function(event) {
-        event.preventDefault();
-        showOnly(homeSection);
-    });
-
-    document.getElementById("sliderLink").addEventListener("click", function(event) {
-        event.preventDefault();
-        showOnly(sliderPage);
-    });
-
-    document.getElementById("newsLink").addEventListener("click", function(event) {
-        event.preventDefault();
-        showOnly(newsPage);
-    });
-
-    document.getElementById("marqueeLink").addEventListener("click", function(event) {
-        event.preventDefault();
-        showOnly(marqueePage);
-    });
-});
-
-    </script>
 </body>
 
 </html>
