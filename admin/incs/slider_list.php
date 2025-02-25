@@ -192,7 +192,7 @@ if (isset($_POST['snoEdit'])) {
                 snoEdit = e.target.id.substr(1,)
 
                 if(confirm("Press a Button")){
-                    window.location = "/admin/index.php?delete=";
+                    window.location = "/p2/admin/index.php?delete=snoEdit";
                 }else
                 {
                     console.log("no");
