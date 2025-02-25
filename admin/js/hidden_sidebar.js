@@ -33,6 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
     links.sliderList.addEventListener("click", function (event) {
         event.preventDefault();
         showSection("sliderList");
-        history.pushState(null, "", "index.php?view=slider_list");
+        history.pushState(null, "", "index.php?");
     });
 });
