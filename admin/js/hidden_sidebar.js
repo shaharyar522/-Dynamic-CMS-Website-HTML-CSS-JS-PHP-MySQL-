@@ -1,12 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
     let sections = {
         dashboard: document.getElementById("dashboardSection"),
-        sliderList: document.getElementById("sliderListSection")
+        sliderList: document.getElementById("sliderListSection"),
+        newsList: document.getElementById("newsListSection"),
+        marqueeList: document.getElementById("marqueeListSection") // Added Marquee List
     };
 
     let links = {
         dashboard: document.getElementById("dashboardLink"),
-        sliderList: document.getElementById("sliderListLink")
+        sliderList: document.getElementById("sliderListLink"),
+        newsList: document.getElementById("newsListLink"),
+        marqueeList: document.getElementById("marqueeListLink") // Added Marquee List Link
     };
 
     // Initially hide all sections
@@ -33,6 +37,20 @@ document.addEventListener("DOMContentLoaded", function () {
     links.sliderList.addEventListener("click", function (event) {
         event.preventDefault();
         showSection("sliderList");
-        history.pushState(null, "", "index.php?");
+        history.pushState(null, "", "index.php?section=sliderList");
+    });
+
+    links.newsList.addEventListener("click", function (event) {
+        event.preventDefault();
+        showSection("newsList");
+        history.pushState(null, "", "index.php?section=newsList");
+    });
+
+    links.marqueeList.addEventListener("click", function (event) {
+        event.preventDefault();
+        showSection("marqueeList");
+        history.pushState(null, "", "index.php?section=marqueeList");
     });
 });
+
+

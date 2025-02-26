@@ -1,50 +1,10 @@
-<?php require_once("connection.php");
-// start edit backend code
-if (isset($_POST['snoEdit'])) {
-    $slider_id_update = $_POST["snoEdit"];
-    $slider_title_update = isset($_POST["sliderTitleEdit"]) ? $_POST["sliderTitleEdit"] : "";
-    $slider_image_update = isset($_POST["sliderImageEdit"]) ? $_POST["sliderImageEdit"] : "";
-
-    // Correct SQL syntax
-    $update_query = "UPDATE slider SET slider_title='$slider_title_update', slider_image='$slider_image_update' WHERE slider_id='$slider_id_update'";
-
-    $result = mysqli_query($conn, $update_query);
-
-    if ($result) {
-        echo "<script>
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success!',
-                    text: 'Your Slider List data has been updated successfully!',
-                    confirmButtonColor: '#3085d6',
-                    confirmButtonText: 'OK'
-                });
-              </script>";
-    } else {
-        echo "<script>
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error!',
-                    text: 'Update query failed!',
-                    confirmButtonColor: '#d33',
-                    confirmButtonText: 'OK'
-                });
-              </script>";
-    }
-}
-// End edit backend code 
-
-
-
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- now this is sweet alert script -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="../css/dashbord.css">
     <!-- css botstarp -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
@@ -54,6 +14,7 @@ if (isset($_POST['snoEdit'])) {
     <link rel="stylesheet" href="//cdn.datatables.net/2.2.2/css/dataTables.dataTables.min.css">
     <!-- jquey -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <!-- uay form ki css hian -->
     <style>
         form {
@@ -94,6 +55,78 @@ if (isset($_POST['snoEdit'])) {
         }
     </style>
 </head>
+<!-- connection add  -->
+<?php require_once("connection.php");
+// start edit backend code
+if (isset($_POST['snoEdit'])) {
+    $slider_id_update = $_POST["snoEdit"];
+    $slider_title_update = isset($_POST["sliderTitleEdit"]) ? $_POST["sliderTitleEdit"] : "";
+    $slider_image_update = isset($_POST["sliderImageEdit"]) ? $_POST["sliderImageEdit"] : "";
+    // Correct SQL syntax
+    $update_query = "UPDATE slider SET slider_title='$slider_title_update', slider_image='$slider_image_update' WHERE slider_id='$slider_id_update'";
+
+    $result = mysqli_query($conn, $update_query);
+
+    if ($result) {
+        echo "<script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Your Slider List data has been updated successfully!',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                });
+              </script>";
+           } else {
+        echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Update query failed!',
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                });
+              </script>";
+    }
+}
+// End of Edit code 
+
+
+
+//start delete code
+if (isset($_GET['delete'])) {
+    $snoEdit = $_GET['delete'];
+    $delet_query = "DELETE FROM `slider` where slider_id = $snoEdit ";
+    $result = mysqli_query($conn, $delet_query);
+    if ($result) {
+        echo "<script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Your Slider List data has been updated successfully!',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                });
+              </script>";
+     } else {
+        echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Update query failed!',
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                });
+              </script>";
+    }
+}
+//End Delete code 
+?>
+
+
+
+
+
 
 <body>
     <!-- modal start when click the edit button the data will updated -->
@@ -120,8 +153,6 @@ if (isset($_POST['snoEdit'])) {
         </div>
     </div>
     <!-- End modal  -->
-
-
     <!-- start table container  -->
     <div class="container my-4">
         <h1 class="text-center fw-bold" style="color: white;">Slider List</h1>
@@ -145,18 +176,40 @@ if (isset($_POST['snoEdit'])) {
                          <th>" . $slider_id  . "</th>
                           <td>" . $row['slider_title'] . "</td>
                           <td>" . $row['slider_image']  . "</td>
-                          <td><button class='edit btn btn-sm btn-primary' id=".$row['slider_id'] .">Edit</button> <button class='delete btn btn-sm btn-primary' id=td".$row['slider_id'] .">Delete</button>";
+                          <td><button class='edit btn btn-sm btn-primary' id=" . $row['slider_id'] . ">Edit</button> 
+                          <button class='delete btn btn-sm btn-danger' id=d" . $row['slider_id'] . ">Delete</button>";
                 }
                 ?>
             </tbody>
         </table>
     </div>
     <!-- End  table container -->
+
+
+
+
+
+
+
+
+
+
+
     <script src="//cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
+    
+    <!-- add js data table -->
     <script>
         let table = new DataTable('#myTable');
     </script>
+<!-- End js data table -->
+
+
+
+
+
+<!-- both js edit or delete hian hamray pass -->
     <script>
+        //START EDIT JAVASCRIPT
         edits = document.getElementsByClassName('edit');
         Array.from(edits).forEach((element) => {
             element.addEventListener("click", (e) => {
@@ -177,28 +230,27 @@ if (isset($_POST['snoEdit'])) {
                 $('#editModal').modal('toggle');
             });
         });
+        // END edit javascript 
 
-
-        //delete code 
-
-
-         deletes = document.getElementsByClassName('delete');
+ 
+        // start delete code  js
+        deletes = document.getElementsByClassName('delete');
         Array.from(deletes).forEach((element) => {
             element.addEventListener("click", (e) => {
                 console.log("delete", );
                 //ab parent ka parent main chala gya hn ab tr mill gya hian ab dono td ko laain lo ga
                 tr = e.target.parentNode.parentNode;
                 console.log(e.target.id);
-                snoEdit = e.target.id.substr(1,)
+                snoEdit = e.target.id.substr(1, )
 
-                if(confirm("Press a Button")){
-                    window.location = "/p2/admin/index.php?delete=snoEdit";
-                }else
-                {
+                if (confirm("Press a Button")) {
+                    window.location = `/p2/admin/index.php?delete=${snoEdit}`;
+                } else {
                     console.log("no");
                 }
             });
         });
+        //end delete code js
     </script>
 </body>
 

@@ -7,6 +7,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,6 +29,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                 <h1 class="dashboard-header">Interactive CMS Dashboard</h1>
                 <a href="../logout.php" class="logout-btn">Logout</a>
             </div>
+
             <!-- Only Dashboard Section -->
             <div id="dashboardSection" style="display: none;">
                 <?php include("incs/dashboard.php"); ?>
@@ -36,6 +38,17 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
             <div id="sliderListSection" style="display: none;">
                 <?php include("incs/slider_list.php"); ?>
             </div>
+            <!-- News List Section (Initially Hidden) -->
+            <div id="newsListSection" style="display: none;">
+                <?php include("incs/news_list.php"); ?>
+            </div>
+
+            <!-- Marquee List Section (Initially Hidden) -->
+            <div id="marqueeListSection" style="display: none;">
+                <?php include("incs/marquee_list.php"); ?>
+            </div>
+
+
 
 
 

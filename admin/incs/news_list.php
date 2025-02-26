@@ -1,120 +1,152 @@
-<?php
-require_once('connection.php'); // Database Connection
-// Delete News
-if (isset($_GET['news_delete'])) {
-    $delete_news = $_GET['news_delete'];
-    $query = "DELETE FROM news WHERE news_id='$delete_news'";
-    $result =    mysqli_query($conn, $query);
-    if ($result) {
-        echo "<script>
-        window.location.href = 'index.php?show=news';
-    </script>";
-        exit();
-    }
-}
-// Fetch News Data
-$query = "SELECT * FROM news";
-$result = mysqli_query($conn, $query);
-$news_items = mysqli_fetch_all($result, MYSQLI_ASSOC);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News List</title>
-    <!-- jQuery پہلے لوڈ کریں -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-    <!-- DataTables کا CSS -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- Bootstrap JS (including Popper.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.min.css">
-
-    <!-- DataTables کا JavaScript -->
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
 </head>
 
 <body>
-    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Connection add -->
+    <?php require_once("connection.php"); ?>
+    <!-- ab main chatahn k agar koe eidt par click kara to data update hn jana chayen us k leuy hidden input dallon ga -->
+
+
+
+
+
+
+
+
+    <!-- start modal  when click the edit button  -->
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#eidt_newsModal">
+        Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="eidt_newsModal" tabindex="-1" aria-labelledby="ediit_newsModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edits This Notes</h1>
+                    <h1 class="modal-title fs-5" id="ediit_newsModalLabel">Edits News List</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="POST">
-                        <div class="mb-3">
-                            <label for="title" class="form-label">Title</label>
-                            <input type="text" name="titleEdit" id="titleEdit" placeholder="Enter Your Title" class="form-control">
-                        </div>
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Description</label>
-                            <textarea name="descriptionEdit" id="descriptionEdit" placeholder="Enter Your Descripiton" class="form-control" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" name="submit" value="sub">Updatd</button>
+                    <form action="./index.php" method="POST">
+                        <input type="text" name="newsTitleEdit"  id="newsTitleEdit"  placeholder="Enter news title" required>
+                        <textarea name="newsDescriptionEdit" id="newsDescriptionEdit"   placeholder="Enter news description" required></textarea>
+                        <button type="submit" name="submit" value="sub">Update News List</button>
+                        <input type="hidden" name="su">
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class=" btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
+    <!-- End Modal  -->
 
 
 
 
 
-    <div class="container mt-5">
-        <h1 class="text-center fw-bold">News List</h1>
-        <table id="myTable" class="table table-bordered mt-3">
-            <thead class="table-dark">
+
+
+
+
+
+
+
+
+
+
+    <!-- Start table -->
+    <div class="container my-4">
+        <h1 class="text-center fw-bold" style="color: white;">News List</h1>
+        <table class="table" id="myTable_news">
+            <thead>
                 <tr>
-                    <th>News Title</th>
-                    <th>News Description</th>
-                    <th>Actions</th>
+                    <th>Sno</th>
+                    <th>News_title</th>
+                    <th>News_description</th>
+                    <th>Action</th> <!-- Column 3 -->
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($news_items as $news): ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($news['news_title']); ?></td>
-                        <td><?php echo htmlspecialchars($news['news_description']); ?></td>
-                        <td class="text-center">
-                            <button class="edit btn btn-sm btn-primary">Edit</button>
-                            <a href="?news_delete=<?php echo $news['news_id']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this news?');">Delete</a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
+                <?php
+                $select_query = "SELECT * FROM news";
+                $result = mysqli_query($conn, $select_query);
+                $news_id = 0;
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $news_id++;
+                    echo "
+                    <tr> 
+                       <td>" . $row['news_id'] . "</td>
+                       <td>" . $row['news_title'] . "</td>
+                       <td>" . $row['news_description'] . "</td>
+                        <td>
+                         <button class='edit_news_button  btn btn-sm btn-primary' id=" . $row['news_id'] . ">Edit</button> 
+                       <button class='delete btn btn-sm btn-danger' id=" . $row['news_id'] . ">Delete</button>
+                        </td> 
+                    </tr>";
+                }
+                ?>
+                <!-- es main hum ny edit button ko class di hian edit_news_button k name say  -->
             </tbody>
         </table>
     </div>
-    <!-- edit button js -->
+    <!-- End Table -->
+
+    <!-- Initialize DataTable -->
     <script>
-        edits = document.getElementsByClassName("edit");
-        Array.from(edits).forEach((element) => {
-            element.addEventListener("click", (e) => {
-                console.log("edit", );
-                tr = e.target.parentNode.parentNode;
-                news_title = tr.getElementsByTagName("td")[0].innerText;
-                news_description = tr.getElementsByTagName("td")[1].innerText;
-                console.log(news_title, news_description);
-                newsTitleEdit.value = news_title;
-                newsDescriptionEdit.value = news_description;
-                var myModal = new bootstrap.Modal(document.getElementById('editModal'));
-                myModal.show();
-            });
+        $(document).ready(function () {
+            $('#myTable_news').DataTable();
         });
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="//cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
-    <script>
-        let table = new DataTable('#myTable');
-    </script>
 
+
+
+
+    <!-- es mian bhei hamray pas both js hian 
+     1.click karnay par wo hamay show hnt hai button 
+     2. ab main button ka parent main jao ga or us ka bhei parent main jao ga to mohjy td td mill jian guy or un ki values ko lain loga 
+     3.jasay hi mohjay dono td millay guy main un dono ko lain lo ga mtlab news_title or news_description 
+     4.jashay hi mohjy dono td mill jian guy to main un ko modal main dall dun gaa -->
+
+    <script>
+        edits_button = document.getElementsByClassName('edit_news_button');
+        Array.from(edits_button).forEach((element) => {
+            element.addEventListener("click" , (e)=>{
+                console.log("Edit_button ",);
+                tr =  e.target.parentNode.parentNode;
+                title = tr.getElementsByTagName("td")[1].innerText;
+                description = tr.getElementsByTagName("td")[2].innerText;
+                console.log(title, description);
+                //jo maray pass titile or description ki td value i hian ab main us ko form main id dian kay jo mara modal hian
+                // us main dall dain guy tu wo us kay baraber hn jian gaa jab modal open hnga ab wo console.log ki bjain modal main 
+                //open hnga
+                newsTitleEdit.value  = title;
+                newsDescriptionEdit.value =  description;
+               // ab hum modal ko js kay throw or  jo modal m id di hngo wohi uahe lehkay guy
+               //
+               $('#eidt_newsModal').modal('toggle');
+            })
+        })
+
+
+    </script>
 </body>
 
 </html>
