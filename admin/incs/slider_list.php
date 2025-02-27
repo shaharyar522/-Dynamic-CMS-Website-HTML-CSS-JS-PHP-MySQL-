@@ -55,7 +55,12 @@
         }
     </style>
 </head>
-<!-- connection add  -->
+<body>
+
+<!-- start Backend code  -->
+
+
+    <!-- connection add  -->
 <?php require_once("connection.php");
 // start edit backend code
 if (isset($_POST['snoEdit'])) {
@@ -123,12 +128,26 @@ if (isset($_GET['delete'])) {
 //End Delete code 
 ?>
 
+<!-- End Backend Code  -->
 
 
 
 
 
-<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- modal start when click the edit button the data will updated -->
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -153,6 +172,9 @@ if (isset($_GET['delete'])) {
         </div>
     </div>
     <!-- End modal  -->
+
+
+
     <!-- start table container  -->
     <div class="container my-4">
         <h1 class="text-center fw-bold" style="color: white;">Slider List</h1>
@@ -177,7 +199,7 @@ if (isset($_GET['delete'])) {
                           <td>" . $row['slider_title'] . "</td>
                           <td>" . $row['slider_image']  . "</td>
                           <td><button class='edit btn btn-sm btn-primary' id=" . $row['slider_id'] . ">Edit</button> 
-                          <button class='delete btn btn-sm btn-danger' id=d" . $row['slider_id'] . ">Delete</button>";
+                          <button class='delete btn btn-sm btn-danger' id=d" . $row['slider_id'] . ">Delete</button></td></tr>";
                 }
                 ?>
             </tbody>

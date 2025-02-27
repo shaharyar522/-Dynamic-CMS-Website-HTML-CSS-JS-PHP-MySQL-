@@ -1,0 +1,21 @@
+
+
+//userinterface
+//admin
+
+
+
+
+
+//es mian harmay pass first one is website whic is front end using html css and js and 
+// php alomost fetch data throw data base 
+
+// us kay bad hamray passs dahsbord hain jo kay admin ko access hngi 
+
+// agar khc any text or image they deleted throw dasboard and 
+// dashboard say hum main webite ko handle kar saktian hain
+// jo add ki hian image or ua es tahran say tu wo hum es kay throw 
+
+
+// dahsboard ka throw hum edit , delte or text ko update behi kar sahkitn hian
+
