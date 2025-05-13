@@ -94,7 +94,7 @@
 
 
     <!-- start modal  when click the edit button  -->
-    <!-- Modal -->
+    <!-- Modal     -->
     <div class="modal fade" id="eidt_newsModal" tabindex="-1" aria-labelledby="ediit_newsModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -142,7 +142,7 @@
                     <th>Sno</th>
                     <th>News_title</th>
                     <th>News_description</th>
-                    <th>Action</th> <!-- Column 3 -->
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -150,7 +150,7 @@
                 $select_query = "SELECT * FROM news";
                 $result = mysqli_query($conn, $select_query);
                 $news_id = 0;
-                while ($row = mysqli_fetch_assoc($result)) {
+                while ($row = mysqli_fetch_assoc($result)){
                     $news_id++;
                     echo "
                     <tr> 
@@ -187,6 +187,7 @@
      4.jashay hi mohjy dono td mill jian guy to main un ko modal main dall dun gaa -->
 
     <script>
+
         edits_button = document.getElementsByClassName('edit_news_button');
         Array.from(edits_button).forEach((element) => {
             element.addEventListener("click", (e) => {
@@ -223,7 +224,6 @@
                 } else {
                     console.log("no");
                 }
-
             })
         });
     </script>
